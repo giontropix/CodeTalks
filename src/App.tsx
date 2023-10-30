@@ -1,12 +1,27 @@
-import '@mantine/core/styles.css';
+import './styles/index.css';
 import { MantineProvider } from '@mantine/core';
+import { IntlProvider } from 'react-intl';
+import { ModalsProvider } from '@mantine/modals';
+import { Notifications } from '@mantine/notifications';
 import { Router } from './Router';
 import { theme } from './theme';
+import { Locale, translations } from './translations';
 
-export default function App() {
+type Props = {
+  locale: Locale;
+};
+
+export default function App({ locale }: Props) {
+  const messages = translations[locale];
+
   return (
-    <MantineProvider theme={theme}>
-      <Router />
-    </MantineProvider>
+    <IntlProvider locale={locale} messages={messages}>
+      <MantineProvider theme={theme}>
+        <ModalsProvider>
+          <Notifications position="top-right" />
+          <Router />
+        </ModalsProvider>
+      </MantineProvider>
+    </IntlProvider>
   );
 }

@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@e2e/*": [
+                "e2e/*"
+            ],
+            "@downloads/*": [
+                "downloads/*"
+            ],
+            "@fixtures/*": [
+                "fixtures/*"
+            ],
+            "@support/*": [
+                "support/*"
+            ],
+        },
+        "target": "es5",
+        "lib": [
+            "es5",
+            "dom"
+        ],
+        "types": [
+            "cypress",
+            "node"
+        ]
+    },
+    "include": [
+        "**/*.ts"
+    ]
+}
