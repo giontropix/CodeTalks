@@ -1,0 +1,109 @@
+import { Button, Container, Fieldset, Group, NativeSelect, TextInput, rem } from '@mantine/core';
+import { IconAlertTriangle } from '@tabler/icons-react';
+import { useForm } from 'react-hook-form';
+import { FormattedMessage, useIntl } from 'react-intl';
+import { showNotification } from '@mantine/notifications';
+import classes from './ContainedInput.module.css';
+
+type Form = {
+  name: string;
+  email: string;
+  framework: 'React' | 'Angular' | 'Svelte' | 'Vue';
+};
+
+const Form = () => {
+  const intl = useIntl();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Form>();
+
+  const onSubmit = (data: Form) => {
+    fetch('http://localhost:3000/sleepers', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    }).then(() => {
+      showNotification({
+        message: intl.formatMessage({
+          id: 'form.submit.success',
+        }),
+        color: 'green',
+        autoClose: 10000,
+        id: 'success-notification',
+      });
+    });
+  };
+
+  return (
+    <Container p="xl" data-testid="form-test">
+      <Fieldset legend={intl.formatMessage({ id: 'form.fieldset_title' })}>
+        <TextInput
+          data-testid="form-name-input"
+          label={intl.formatMessage({
+            id: 'form.name_input.label',
+          })}
+          description={intl.formatMessage({
+            id: 'form.name_input.description',
+          })}
+          placeholder={intl.formatMessage({
+            id: 'form.name_input.placeholder',
+          })}
+          {...register('name')}
+        />
+        <TextInput
+          mt="sm"
+          required
+          errorProps={{
+            'data-testid': 'form-email-input-error',
+          }}
+          data-testid="form-email-input"
+          label={intl.formatMessage({
+            id: 'form.email_input.label',
+          })}
+          description={intl.formatMessage({
+            id: 'form.email_input.description',
+          })}
+          error={
+            errors.email &&
+            intl.formatMessage({
+              id: 'form.email_input.error',
+            })
+          }
+          placeholder={intl.formatMessage({
+            id: 'form.email_input.placeholder',
+          })}
+          classNames={{ input: errors.email && classes.invalid }}
+          rightSection={
+            errors.email && (
+              <IconAlertTriangle
+                stroke={1.5}
+                style={{ width: rem(18), height: rem(18) }}
+                className={classes.icon}
+              />
+            )
+          }
+          {...register('email', { required: true })}
+        />
+        <NativeSelect
+          mt="sm"
+          required
+          data-testid="form-framework-input"
+          label={intl.formatMessage({ id: 'form.framework_input.label' })}
+          data={['React', 'Angular', 'Svelte', 'Vue', 'Javascript vaniglia e cioccolato']}
+          {...register('framework', { required: true })}
+        />
+      </Fieldset>
+      <Group mt="md" justify="center">
+        <Button data-testid="form-submit-input" onClick={handleSubmit(onSubmit)} size="md">
+          <FormattedMessage id="form.submit.button" />
+        </Button>
+      </Group>
+    </Container>
+  );
+};
+
+export default Form;

@@ -3,5 +3,27 @@
   "header.cypress": "Cypress",
 
   "sidebar.menu_item.dashboard": "Dashboard",
-  "sidebar.menu_item.form": "Test form"
+  "sidebar.menu_item.form": "Form a caso",
+  "sidebar.menu_item.table": "Tabella proprio basica",
+
+  "dashboard.title": "Un framework completo per far fare alle macchine ciò che i dev odiano fare",
+  "dashboard.abstract": "Ti immagini che mondo sarebbe se non dovessi più avere{br}bisogno di testare in continuazione la tua app quando guardi, disgustato, il codice scritto 6 mesi fa e ti viene quella irrefrenabile voglia di <strong>REFACTOR</strong>???",
+  "dashboard.button": "Vai alla doc",
+
+  "form.fieldset_title": "Registrati se anche tu vuoi dormire bene",
+
+  "form.name_input.label": "Nome",
+  "form.name_input.description": "Solo se te la senti, inserisci il tuo nome",
+  "form.name_input.placeholder": "Zio Pippo",
+
+  "form.email_input.label": "Email",
+  "form.email_input.description": "Giuro, niente spam",
+  "form.email_input.placeholder": "zio.pippo@laputiadelviale.ct",
+  "form.email_input.error": "Non ammucco lapuni",
+
+  "form.framework_input.label": "Sei un lover...de che?",
+  "form.framework_input.description": "Scegli di cosa sei lover",
+
+  "form.submit.button": "Invia",
+  "form.submit.success": "Achievement dormi bene sbloccato!"
 }

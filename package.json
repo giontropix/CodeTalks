@@ -1,7 +1,8 @@
 {
-  "name": "mantine-vite-template",
+  "name": "sleeping-well-with-cypress",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -16,25 +17,26 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "cypress:report": "cypress run --reporter cypress-mochawesome-reporter"
+    "cypress:run": "cypress run"
   },
   "dependencies": {
-    "@cypress/code-coverage": "^3.12.6",
     "@mantine/core": "7.1.7",
     "@mantine/hooks": "7.1.7",
     "@mantine/modals": "^7.1.7",
     "@mantine/notifications": "^7.1.7",
     "@tabler/icons-react": "^2.40.0",
-    "cypress": "^13.3.3",
-    "cypress-mochawesome-reporter": "^3.6.1",
+    "cypress": "^13.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
     "react-intl": "^6.5.1",
     "react-router-dom": "^6.11.2",
+    "vite-plugin-istanbul": "^5.0.0",
+    "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.6"
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.12.7",
     "@storybook/addon-essentials": "^7.0.18",
     "@storybook/addon-interactions": "^7.0.18",
     "@storybook/addon-links": "^7.0.18",

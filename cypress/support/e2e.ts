@@ -1,7 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// cypress/support/e2e.js
 import '@cypress/code-coverage/support';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import 'cypress-mochawesome-reporter/register';
 
 const selectorPriority = [
   'data-cy',

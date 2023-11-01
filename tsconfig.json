@@ -15,6 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "baseUrl": "http://localhost:3001",
     "paths": {
       "@test-utils": ["./test-utils"]
     }
