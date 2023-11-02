@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { showNotification } from '@mantine/notifications';
 import classes from './ContainedInput.module.css';
+import { email, required } from '../../utils/fieldValidators';
 
 type Form = {
   name: string;
@@ -57,6 +58,7 @@ const Form = () => {
         <TextInput
           mt="sm"
           required
+          type="email"
           errorProps={{
             'data-testid': 'form-email-input-error',
           }}
@@ -67,12 +69,7 @@ const Form = () => {
           description={intl.formatMessage({
             id: 'form.email_input.description',
           })}
-          error={
-            errors.email &&
-            intl.formatMessage({
-              id: 'form.email_input.error',
-            })
-          }
+          error={errors.email?.type && errors.email.message}
           placeholder={intl.formatMessage({
             id: 'form.email_input.placeholder',
           })}
@@ -86,7 +83,7 @@ const Form = () => {
               />
             )
           }
-          {...register('email', { required: true })}
+          {...register('email', { ...required(intl), ...email(intl) })}
         />
         <NativeSelect
           mt="sm"
@@ -94,7 +91,7 @@ const Form = () => {
           data-testid="form-framework-input"
           label={intl.formatMessage({ id: 'form.framework_input.label' })}
           data={['React', 'Angular', 'Svelte', 'Vue', 'Javascript vaniglia e cioccolato']}
-          {...register('framework', { required: true })}
+          {...register('framework', { ...required(intl) })}
         />
       </Fieldset>
       <Group mt="md" justify="center">
