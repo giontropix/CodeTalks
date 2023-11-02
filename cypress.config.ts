@@ -3,8 +3,8 @@ import codeCoverage from '@cypress/code-coverage/task';
 
 export default defineConfig({
   e2e: {
-    viewportWidth: 1920,
-    viewportHeight: 1080,
+    viewportWidth: 1280,
+    viewportHeight: 800,
     chromeWebSecurity: false,
     experimentalStudio: true,
     experimentalRunAllSpecs: true,
