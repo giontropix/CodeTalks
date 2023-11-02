@@ -6,6 +6,12 @@ describe('Table', () => {
     cy.intercept('http://localhost:3000/users').as('getUsers');
     cy.get("[data-testid='table-test']").should('exist');
     cy.wait('@getUsers');
+
+    cy.get("[data-testid='sidebar-menu-item-table']").should(
+      'have.css',
+      'background-color',
+      'rgba(34, 139, 230, 0.1)'
+    );
   });
 
   it('should correctly search an item', () => {

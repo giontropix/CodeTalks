@@ -5,4 +5,5 @@ export type MenuItem = {
   translationId: TranslationId;
   Icon: Icon;
   path: string;
+  dataTestId: string;
 };

@@ -5,8 +5,9 @@ import classes from './index.module.scss';
 
 type Props = MenuItem;
 
-const Item = ({ path, translationId, Icon }: Props) => (
+const Item = ({ path, translationId, Icon, dataTestId }: Props) => (
   <NavLink
+    data-testid={dataTestId}
     to={path}
     className={({ isActive }) =>
       isActive ? `${classes.link} ${classes['link--active']}` : classes.link
