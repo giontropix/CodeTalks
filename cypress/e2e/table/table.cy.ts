@@ -7,11 +7,7 @@ describe('Table', () => {
     cy.get("[data-testid='table-test']").should('exist');
     cy.wait('@getUsers');
 
-    cy.get("[data-testid='sidebar-menu-item-table']").should(
-      'have.css',
-      'background-color',
-      'rgba(34, 139, 230, 0.1)'
-    );
+    cy.checkMenuItemIsActive('sidebar-menu-item-table');
   });
 
   it('should correctly search an item', () => {

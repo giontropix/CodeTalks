@@ -5,11 +5,7 @@ describe('form', () => {
   it('should correctly render the page', () => {
     cy.get("[data-testid='form-test']").should('exist');
 
-    cy.get("[data-testid='sidebar-menu-item-form']").should(
-      'have.css',
-      'background-color',
-      'rgba(34, 139, 230, 0.1)'
-    );
+    cy.checkMenuItemIsActive('sidebar-menu-item-form');
   });
 
   it('should correctly trigger an error if email field remains empty', () => {

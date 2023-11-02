@@ -20,6 +20,6 @@
       "@test-utils": ["./test-utils"]
     }
   },
-  "include": ["src", "test-utils", "cypress"],
+  "include": ["src", "test-utils"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
