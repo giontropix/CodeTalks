@@ -27,7 +27,7 @@ describe('form', () => {
     cy.get("[data-testid='form-submit-input']").click();
     cy.get("[data-testid='form-email-input-error']").should('not.exist');
     cy.wait('@sleepers').its('request.body').should('deep.equal', {
-      name: 'Saro Falsaperla',
+      name: 'SARO FALSAPERLA',
       email: 'saro.falsaperla@liotro.ct',
       framework: 'Javascript vaniglia e cioccolato',
     });

@@ -20,10 +20,10 @@ const Form = () => {
     formState: { errors },
   } = useForm<Form>();
 
-  const onSubmit = (data: Form) => {
+  const onSubmit = ({ name, email, framework }: Form) => {
     fetch('http://localhost:3000/sleepers', {
       method: 'POST',
-      body: JSON.stringify(data),
+      body: JSON.stringify({ name: name.toUpperCase(), email, framework }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
