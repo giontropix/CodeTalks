@@ -4,6 +4,7 @@ import { IconSearch } from '@tabler/icons-react';
 import { RowData } from './types';
 import { sortData } from './utils';
 import Th from './components/Th';
+import { EmptyState } from './components/EmptyState';
 
 export function TableSort() {
   const [search, setSearch] = useState('');
@@ -25,7 +26,7 @@ export function TableSort() {
     getData();
   }, []);
 
-  if (!fetchData.length) return null;
+  if (!fetchData.length) return <EmptyState />;
 
   const setSorting = (field: keyof RowData) => {
     const reversed = field === sortBy ? !reverseSortDirection : false;
