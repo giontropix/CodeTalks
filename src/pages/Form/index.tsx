@@ -5,29 +5,21 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { showNotification } from '@mantine/notifications';
 import classes from './ContainedInput.module.css';
 import { email, required } from '../../utils/fieldValidators';
-
-type Form = {
-  name: string;
-  email: string;
-  framework: 'React' | 'Angular' | 'Svelte' | 'Vue';
-};
+import { addUser } from '../../services/users';
+import { useAddUserMutation } from '../../store/rtkQuery/users';
+import { User } from '../../types';
 
 const Form = () => {
   const intl = useIntl();
+  // const [triggerAddMutation] = useAddUserMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Form>();
+  } = useForm<User>();
 
-  const onSubmit = ({ name, email, framework }: Form) => {
-    fetch('http://localhost:3000/sleepers', {
-      method: 'POST',
-      body: JSON.stringify({ name: name.toUpperCase(), email, framework }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    }).then(() => {
+  const onSubmit = (user: User) => {
+    addUser(user).then(() => {
       showNotification({
         message: intl.formatMessage({
           id: 'form.submit.success',

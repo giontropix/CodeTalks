@@ -16,14 +16,14 @@ describe('Table', () => {
     cy.get('@search').type('Trace');
     // check successful search
     cy.get("[data-testid='table-body-row']").as('body-row');
-    cy.get('@body-row').should('have.length', 1);
+    cy.get('@body-row').should('have.length', 3);
     cy.get('@body-row').find('[data-testid="table-cell-name"]').contains('Trace');
     cy.get('@body-row')
       .find('[data-testid="table-cell-email"]')
       .contains('Antonina.Pouros@yahoo.com');
     cy.get('@body-row')
-      .find('[data-testid="table-cell-company"]')
-      .contains('Crona, Aufderhar and Senger');
+      .find('[data-testid="table-cell-framework"]')
+      .contains('Javascript vaniglia e cioccolato');
   });
 
   it('should correctly restore table if search is empty', () => {

@@ -18,7 +18,7 @@ describe('form', () => {
 
   it('should correctly compile and send the form', () => {
     cy.intercept({
-      url: 'http://localhost:3000/sleepers',
+      url: 'http://localhost:3000/users',
       method: 'POST',
     }).as('sleepers');
     cy.get("[data-testid='form-name-input']").type('Saro Falsaperla');

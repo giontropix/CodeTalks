@@ -16,7 +16,7 @@ const Header = () => {
             component="span"
             gradient={{ from: 'green', to: 'violet' }}
           >
-            <FormattedMessage id="header.cypress" />
+            <FormattedMessage id="header.thread" />
           </Text>
         </Title>
         <ActionIcon

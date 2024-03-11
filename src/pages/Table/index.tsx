@@ -1,51 +1,53 @@
 import { useEffect, useState } from 'react';
 import { Table, ScrollArea, Text, TextInput, rem } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
-import { RowData } from './types';
 import { sortData } from './utils';
 import Th from './components/Th';
 import { EmptyState } from './components/EmptyState';
+import { useDispatch, useSelector } from 'react-redux';
+import { requestGetUsers } from '../../store/slices/users/entity/sideEffects';
+import { selectUsers } from '../../store/slices/users/slices/usersSlice';
+import { User } from '../../types';
+import { AppDispatch } from '../../store/configureStore';
+import { useGetUsersQuery } from '../../store/rtkQuery/users';
 
-export function TableSort() {
+export const TableSort = () => {
+  const { data: users = [] } = useGetUsersQuery();
+
+  const dispatch = useDispatch<AppDispatch>();
+  // const users = useSelector(selectUsers);
   const [search, setSearch] = useState('');
-  const [fetchData, setFetchData] = useState<RowData[]>([]);
-  const [sortedData, setSortedData] = useState(fetchData);
-  const [sortBy, setSortBy] = useState<keyof RowData | null>(null);
+  const [sortedData, setSortedData] = useState<User[]>([]);
+  const [sortBy, setSortBy] = useState<keyof User | null>(null);
   const [reverseSortDirection, setReverseSortDirection] = useState(false);
 
-  const getData = async () => {
-    fetch('http://localhost:3000/users')
-      .then((res) => res.json())
-      .then((data) => {
-        setFetchData(data);
-        setSortedData(data);
-      });
-  };
-
   useEffect(() => {
-    getData();
-  }, []);
+    //   dispatch(requestGetUsers())
+    //     .unwrap()
+    //     .then((data) => setSortedData(data));
+    setSortedData(users);
+  }, [users]);
 
-  if (!fetchData.length) return <EmptyState />;
+  if (!users.length) return <EmptyState />;
 
-  const setSorting = (field: keyof RowData) => {
+  const setSorting = (field: keyof User) => {
     const reversed = field === sortBy ? !reverseSortDirection : false;
     setReverseSortDirection(reversed);
     setSortBy(field);
-    setSortedData(sortData(fetchData, { sortBy: field, reversed, search }));
+    setSortedData(sortData(users, { sortBy: field, reversed, search }));
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
     setSearch(value);
-    setSortedData(sortData(fetchData, { sortBy, reversed: reverseSortDirection, search: value }));
+    setSortedData(sortData(users, { sortBy, reversed: reverseSortDirection, search: value }));
   };
 
   const rows = sortedData.map((row) => (
-    <Table.Tr data-testid="table-body-row" key={row.name}>
+    <Table.Tr data-testid="table-body-row" key={row.id}>
       <Table.Td data-testid="table-cell-name">{row.name}</Table.Td>
       <Table.Td data-testid="table-cell-email">{row.email}</Table.Td>
-      <Table.Td data-testid="table-cell-company">{row.company}</Table.Td>
+      <Table.Td data-testid="table-cell-company">{row.framework}</Table.Td>
     </Table.Tr>
   ));
 
@@ -79,12 +81,12 @@ export function TableSort() {
               Email
             </Th>
             <Th
-              dataTestId="table-header-company"
-              sorted={sortBy === 'company'}
+              dataTestId="table-header-framework"
+              sorted={sortBy === 'framework'}
               reversed={reverseSortDirection}
-              onSort={() => setSorting('company')}
+              onSort={() => setSorting('framework')}
             >
-              Company
+              Framework
             </Th>
           </Table.Tr>
         </Table.Tbody>
@@ -93,7 +95,7 @@ export function TableSort() {
             rows
           ) : (
             <Table.Tr>
-              <Table.Td data-testid="table-cell" colSpan={Object.keys(fetchData[0]).length}>
+              <Table.Td data-testid="table-cell" colSpan={Object.keys(users[0]).length}>
                 <Text fw={500} ta="center">
                   Nothing found
                 </Text>
@@ -104,4 +106,4 @@ export function TableSort() {
       </Table>
     </ScrollArea>
   );
-}
+};

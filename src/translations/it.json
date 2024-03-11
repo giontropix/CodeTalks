@@ -1,6 +1,6 @@
 {
-  "header.title": "Dormire sonni tranquilli con ",
-  "header.cypress": "Cypress",
+  "header.title": "Prova su strada di ",
+  "header.thread": "RTK Query",
 
   "field_error.required": "Attenzione, campo vuoto",
   "field_error.error": "Inserimento errato",
@@ -9,11 +9,12 @@
   "sidebar.menu_item.form": "Form a caso",
   "sidebar.menu_item.table": "Tabella proprio basica",
 
-  "dashboard.title": "Un tool completo per far fare alle macchine ciò che i dev odiano fare",
-  "dashboard.abstract": "Vi immaginate che mondo sarebbe se non dovessimo più avere{br}bisogno di testare in continuazione le app quando guardiamo, disgustati, il codice scritto 6 mesi fa e viene quella irrefrenabile voglia di <strong>REFACTOR</strong>???",
-  "dashboard.button": "Vai alla doc",
+  "dashboard.title": "Gestire chiamate API con un terzo della fatica",
+  "dashboard.abstract": "Ragazzi vi giuro ogni volta che dovevo aggiungere una nuova API ad un progetto bello grosso mi veniva l'ansia: servizi, sideEffect, slice, cazzi e mazzi. Ho trovato la soluzione!",
+  "dashboard.doc.button": "Vai alla doc",
+  "dashboard.doc.href": "https://redux-toolkit.js.org/rtk-query/overview",
 
-  "form.fieldset_title": "Registrati se anche tu vuoi dormire bene",
+  "form.fieldset_title": "Registrati se anche tu per una prova su strada",
 
   "form.name_input.label": "Nome",
   "form.name_input.description": "Solo se te la senti, inserisci il tuo nome",
@@ -27,5 +28,5 @@
   "form.framework_input.description": "Scegli di cosa sei lover",
 
   "form.submit.button": "Invia",
-  "form.submit.success": "Achievement dormi bene sbloccato!"
+  "form.submit.success": "Achievement primo tagliando sbloccato!"
 }
