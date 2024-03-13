@@ -9,7 +9,7 @@
   "sidebar.menu_item.form": "Form a caso",
   "sidebar.menu_item.table": "Tabella proprio basica",
 
-  "dashboard.title": "Gestire chiamate API con un terzo della fatica",
+  "dashboard.title": "Miglioriamo la vita delle API (e la nostra) con RKT Query",
   "dashboard.abstract": "Ragazzi vi giuro ogni volta che dovevo aggiungere una nuova API ad un progetto bello grosso mi veniva l'ansia: servizi, sideEffect, slice, cazzi e mazzi. Ho trovato la soluzione!",
   "dashboard.doc.button": "Vai alla doc",
   "dashboard.doc.href": "https://redux-toolkit.js.org/rtk-query/overview",
