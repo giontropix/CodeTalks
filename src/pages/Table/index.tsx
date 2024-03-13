@@ -1,32 +1,33 @@
 import { useEffect, useState } from 'react';
-import { Table, ScrollArea, Text, TextInput, rem } from '@mantine/core';
+import { Table, ScrollArea, Text, TextInput, rem, Skeleton } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 import { sortData } from './utils';
 import Th from './components/Th';
 import { EmptyState } from './components/EmptyState';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestGetUsers } from '../../store/slices/users/entity/sideEffects';
-import { selectUsers } from '../../store/slices/users/slices/usersSlice';
+import { requestGetUsers } from '../../store/slices/users/sideEffects';
+import { selectUsers } from '../../store/slices/users/usersSlice';
 import { User } from '../../types';
 import { AppDispatch } from '../../store/configureStore';
 import { useGetUsersQuery } from '../../store/rtkQuery/users';
+import { FormattedMessage } from 'react-intl';
+import { NotFound } from './components/NotFound';
 
 export const TableSort = () => {
-  const { data: users = [] } = useGetUsersQuery();
+  // const { data: users = [], isFetching } = useGetUsersQuery();
 
   const dispatch = useDispatch<AppDispatch>();
-  // const users = useSelector(selectUsers);
+  const users = useSelector(selectUsers);
   const [search, setSearch] = useState('');
-  const [sortedData, setSortedData] = useState<User[]>([]);
+  // const [sortedData, setSortedData] = useState<User[]>([]);
   const [sortBy, setSortBy] = useState<keyof User | null>(null);
   const [reverseSortDirection, setReverseSortDirection] = useState(false);
 
   useEffect(() => {
-    //   dispatch(requestGetUsers())
-    //     .unwrap()
-    //     .then((data) => setSortedData(data));
-    setSortedData(users);
-  }, [users]);
+    dispatch(requestGetUsers());
+    // if (!users.length) return;
+    // setSortedData(users);
+  }, []);
 
   if (!users.length) return <EmptyState />;
 
@@ -34,16 +35,16 @@ export const TableSort = () => {
     const reversed = field === sortBy ? !reverseSortDirection : false;
     setReverseSortDirection(reversed);
     setSortBy(field);
-    setSortedData(sortData(users, { sortBy: field, reversed, search }));
+    // setSortedData(sortData(users, { sortBy: field, reversed, search }));
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
     setSearch(value);
-    setSortedData(sortData(users, { sortBy, reversed: reverseSortDirection, search: value }));
+    // setSortedData(sortData(users, { sortBy, reversed: reverseSortDirection, search: value }));
   };
 
-  const rows = sortedData.map((row) => (
+  const rows = users.map((row) => (
     <Table.Tr data-testid="table-body-row" key={row.id}>
       <Table.Td data-testid="table-cell-name">{row.name}</Table.Td>
       <Table.Td data-testid="table-cell-email">{row.email}</Table.Td>
@@ -53,14 +54,14 @@ export const TableSort = () => {
 
   return (
     <ScrollArea p="xl" data-testid="table-test">
-      <TextInput
+      {/* <TextInput
         data-testid="table-search"
         placeholder="Search by any field"
         mb="md"
         leftSection={<IconSearch style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}
         value={search}
         onChange={handleSearchChange}
-      />
+      /> */}
       <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} layout="fixed">
         <Table.Tbody data-testid="table-body">
           <Table.Tr data-testid="table-row">
@@ -70,7 +71,7 @@ export const TableSort = () => {
               reversed={reverseSortDirection}
               onSort={() => setSorting('name')}
             >
-              Name
+              <FormattedMessage id="table.headers.name" />
             </Th>
             <Th
               dataTestId="table-header-email"
@@ -78,7 +79,7 @@ export const TableSort = () => {
               reversed={reverseSortDirection}
               onSort={() => setSorting('email')}
             >
-              Email
+              <FormattedMessage id="table.headers.email" />
             </Th>
             <Th
               dataTestId="table-header-framework"
@@ -86,22 +87,13 @@ export const TableSort = () => {
               reversed={reverseSortDirection}
               onSort={() => setSorting('framework')}
             >
-              Framework
+              <FormattedMessage id="table.headers.framework" />
             </Th>
           </Table.Tr>
         </Table.Tbody>
         <Table.Tbody>
-          {rows.length > 0 ? (
-            rows
-          ) : (
-            <Table.Tr>
-              <Table.Td data-testid="table-cell" colSpan={Object.keys(users[0]).length}>
-                <Text fw={500} ta="center">
-                  Nothing found
-                </Text>
-              </Table.Td>
-            </Table.Tr>
-          )}
+          {rows.length > 0 && rows}
+          {rows.length === 0 && <NotFound />}
         </Table.Tbody>
       </Table>
     </ScrollArea>

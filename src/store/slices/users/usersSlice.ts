@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
-import { User } from '../../../../types';
-import { requestGetUsers } from '../entity/sideEffects';
-import { RootState } from '../../../configureStore';
+import { User } from '../../../types';
+import { requestGetUsers } from './sideEffects';
+import { RootState } from '../../configureStore';
 
 type InitialState = {
   users: User[];

@@ -12,24 +12,29 @@ const Sidebar = () => {
       dataTestId: 'sidebar-menu-item-dashboard',
     },
     {
-      Icon: IconAlignJustified,
-      path: '/form',
-      translationId: 'sidebar.menu_item.form',
-      dataTestId: 'sidebar-menu-item-form',
-    },
-    {
       Icon: IconTable,
       path: '/table',
       translationId: 'sidebar.menu_item.table',
       dataTestId: 'sidebar-menu-item-table',
-
+    },
+    {
+      Icon: IconAlignJustified,
+      path: '/form',
+      translationId: 'sidebar.menu_item.form',
+      dataTestId: 'sidebar-menu-item-form',
     },
   ];
 
   return (
     <AppShell.Navbar>
       {menuItems.map(({ Icon, path, translationId, dataTestId }) => (
-        <Item dataTestId={dataTestId} key={path} Icon={Icon} path={path} translationId={translationId} />
+        <Item
+          dataTestId={dataTestId}
+          key={path}
+          Icon={Icon}
+          path={path}
+          translationId={translationId}
+        />
       ))}
     </AppShell.Navbar>
   );

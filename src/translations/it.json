@@ -14,6 +14,11 @@
   "dashboard.doc.button": "Vai alla doc",
   "dashboard.doc.href": "https://redux-toolkit.js.org/rtk-query/overview",
 
+  "table.headers.name": "Name",
+  "table.headers.email": "Email",
+  "table.headers.framework": "Framework",
+  "table.body.no_data": "Nothing found",
+
   "form.fieldset_title": "Registrati se anche tu per una prova su strada",
 
   "form.name_input.label": "Nome",

@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { rtkQueryApis } from './rtkQuery/getRtkQueryApis';
-import { usersReducer } from './slices/users/slices/usersSlice';
+import { usersReducer } from './slices/users/usersSlice';
 
 const rootReducer = combineReducers({
   users: usersReducer,
