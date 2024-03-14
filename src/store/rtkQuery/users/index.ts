@@ -3,6 +3,7 @@ import { rtkQueryApis } from '../getRtkQueryApis';
 
 export const usersApis = rtkQueryApis.injectEndpoints({
   endpoints: (build) => ({
+    // useGetUsersQuery - useLazyGetUsersQuery
     getUsers: build.query<User[], void>({
       query: () => ({
         url: 'users',
@@ -11,6 +12,7 @@ export const usersApis = rtkQueryApis.injectEndpoints({
       providesTags: ['USERS'],
     }),
     addUser: build.mutation<void, User>({
+      // useAddUserMutation
       query: ({ name, email, framework }) => ({
         url: 'users',
         method: 'post',

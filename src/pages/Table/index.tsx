@@ -19,14 +19,14 @@ export const TableSort = () => {
   const dispatch = useDispatch<AppDispatch>();
   const users = useSelector(selectUsers);
   const [search, setSearch] = useState('');
-  // const [sortedData, setSortedData] = useState<User[]>([]);
+  const [sortedData, setSortedData] = useState<User[]>([]);
   const [sortBy, setSortBy] = useState<keyof User | null>(null);
   const [reverseSortDirection, setReverseSortDirection] = useState(false);
 
   useEffect(() => {
-    dispatch(requestGetUsers());
-    // if (!users.length) return;
-    // setSortedData(users);
+    dispatch(requestGetUsers())
+      .unwrap()
+      .then((data) => setSortedData(data));
   }, []);
 
   if (!users.length) return <EmptyState />;
@@ -35,16 +35,16 @@ export const TableSort = () => {
     const reversed = field === sortBy ? !reverseSortDirection : false;
     setReverseSortDirection(reversed);
     setSortBy(field);
-    // setSortedData(sortData(users, { sortBy: field, reversed, search }));
+    setSortedData(sortData(users, { sortBy: field, reversed, search }));
   };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
     setSearch(value);
-    // setSortedData(sortData(users, { sortBy, reversed: reverseSortDirection, search: value }));
+    setSortedData(sortData(users, { sortBy, reversed: reverseSortDirection, search: value }));
   };
 
-  const rows = users.map((row) => (
+  const rows = sortedData.map((row) => (
     <Table.Tr data-testid="table-body-row" key={row.id}>
       <Table.Td data-testid="table-cell-name">{row.name}</Table.Td>
       <Table.Td data-testid="table-cell-email">{row.email}</Table.Td>
@@ -54,14 +54,14 @@ export const TableSort = () => {
 
   return (
     <ScrollArea p="xl" data-testid="table-test">
-      {/* <TextInput
+      <TextInput
         data-testid="table-search"
         placeholder="Search by any field"
         mb="md"
         leftSection={<IconSearch style={{ width: rem(16), height: rem(16) }} stroke={1.5} />}
         value={search}
         onChange={handleSearchChange}
-      /> */}
+      />
       <Table horizontalSpacing="md" verticalSpacing="xs" miw={700} layout="fixed">
         <Table.Tbody data-testid="table-body">
           <Table.Tr data-testid="table-row">
