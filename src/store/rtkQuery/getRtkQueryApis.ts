@@ -13,5 +13,6 @@ export const rtkQueryApis = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   keepUnusedDataFor: DEFAULT_CACHE_TIME,
   tagTypes,
+  // endpoints will add in other files (example: src/store/rtkQuery/users)
   endpoints: () => ({}),
 });
