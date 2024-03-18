@@ -1,6 +1,6 @@
 {
   "header.title": "Prova su strada di ",
-  "header.thread": "RTK Query",
+  "header.thread": "TALK MAIN THREAD",
 
   "field_error.required": "Attenzione, campo vuoto",
   "field_error.error": "Inserimento errato",
@@ -9,10 +9,10 @@
   "sidebar.menu_item.form": "Form a caso",
   "sidebar.menu_item.table": "Tabella proprio basica",
 
-  "dashboard.title": "Miglioriamo la vita delle API (e la nostra) con RKT Query",
-  "dashboard.abstract": "Ragazzi vi giuro ogni volta che dovevo aggiungere una nuova API ad un progetto bello grosso mi veniva l'ansia: servizi, sideEffect, slice, cazzi e mazzi. Ho trovato la soluzione!",
+  "dashboard.title": "TALK TITLE",
+  "dashboard.abstract": "TALK BRIEF DESCRIPTION",
   "dashboard.doc.button": "Vai alla doc",
-  "dashboard.doc.href": "https://redux-toolkit.js.org/rtk-query/overview",
+  "dashboard.doc.href": "MAIN THREAD DOC LINK",
 
   "table.headers.name": "Name",
   "table.headers.email": "Email",
@@ -33,5 +33,5 @@
   "form.framework_input.description": "Scegli di cosa sei lover",
 
   "form.submit.button": "Invia",
-  "form.submit.success": "Achievement primo tagliando sbloccato!"
+  "form.submit.success": "Utente aggiunto con successo"
 }

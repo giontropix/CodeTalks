@@ -6,12 +6,10 @@ import { showNotification } from '@mantine/notifications';
 import classes from './ContainedInput.module.css';
 import { email, required } from '../../utils/fieldValidators';
 import { addUser } from '../../services/users';
-import { useAddUserMutation } from '../../store/rtkQuery/users';
 import { User } from '../../types';
 
 const Form = () => {
   const intl = useIntl();
-  // const [triggerAddMutation] = useAddUserMutation();
   const {
     register,
     handleSubmit,

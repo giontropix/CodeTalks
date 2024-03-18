@@ -1,15 +1,20 @@
 import { User } from '../../../types';
 import { rtkQueryApis } from '../getRtkQueryApis';
 
+type GetUsersProps = {
+  companyId?: string;
+};
+
 export const usersApis = rtkQueryApis.injectEndpoints({
   endpoints: (build) => ({
     // useGetUsersQuery - useLazyGetUsersQuery
-    getUsers: build.query<User[], void>({
-      query: () => ({
-        url: 'users',
+    getUsers: build.query<User[], GetUsersProps>({
+      query: ({ companyId }) => ({
+        url: `${companyId ? `${companyId}/` : ''}users`,
         method: 'get',
       }),
       providesTags: ['USERS'],
+      transformResponse: (response: User[]) => response,
     }),
     addUser: build.mutation<void, User>({
       // useAddUserMutation
@@ -21,7 +26,7 @@ export const usersApis = rtkQueryApis.injectEndpoints({
           'Content-type': 'application/json; charset=UTF-8',
         },
       }),
-      invalidatesTags: ['USERS'],
+      invalidatesTags: (_, error, ___) => (error ? [] : ['USERS']),
     }),
   }),
 });

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Table, ScrollArea, Text, TextInput, rem, Skeleton } from '@mantine/core';
+import { Table, ScrollArea, TextInput, rem } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 import { sortData } from './utils';
 import Th from './components/Th';
@@ -9,13 +9,10 @@ import { requestGetUsers } from '../../store/slices/users/sideEffects';
 import { selectUsers } from '../../store/slices/users/usersSlice';
 import { User } from '../../types';
 import { AppDispatch } from '../../store/configureStore';
-import { useGetUsersQuery } from '../../store/rtkQuery/users';
 import { FormattedMessage } from 'react-intl';
 import { NotFound } from './components/NotFound';
 
 export const TableSort = () => {
-  // const { data: users = [], isFetching } = useGetUsersQuery();
-
   const dispatch = useDispatch<AppDispatch>();
   const users = useSelector(selectUsers);
   const [search, setSearch] = useState('');
@@ -44,11 +41,11 @@ export const TableSort = () => {
     setSortedData(sortData(users, { sortBy, reversed: reverseSortDirection, search: value }));
   };
 
-  const rows = sortedData.map((row) => (
-    <Table.Tr data-testid="table-body-row" key={row.id}>
-      <Table.Td data-testid="table-cell-name">{row.name}</Table.Td>
-      <Table.Td data-testid="table-cell-email">{row.email}</Table.Td>
-      <Table.Td data-testid="table-cell-company">{row.framework}</Table.Td>
+  const rows = sortedData.map(({ id, name, email, framework }) => (
+    <Table.Tr data-testid="table-body-row" key={id}>
+      <Table.Td data-testid="table-cell-name">{name}</Table.Td>
+      <Table.Td data-testid="table-cell-email">{email}</Table.Td>
+      <Table.Td data-testid="table-cell-company">{framework}</Table.Td>
     </Table.Tr>
   ));
 
