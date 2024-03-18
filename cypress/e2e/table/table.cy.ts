@@ -1,9 +1,12 @@
+import mockedUser from './mock/users';
+
 describe('Table', () => {
   beforeEach(() => {
+    // mocked data to prevent adding users from causing tests to fail
+    cy.intercept('http://localhost:3000/users', { body: mockedUser }).as('getUsers');
     cy.visit('/table');
   });
   it('should correctly render the page', () => {
-    cy.intercept('http://localhost:3000/users').as('getUsers');
     cy.get("[data-testid='table-test']").should('exist');
     cy.wait('@getUsers');
 
@@ -16,7 +19,7 @@ describe('Table', () => {
     cy.get('@search').type('Trace');
     // check successful search
     cy.get("[data-testid='table-body-row']").as('body-row');
-    cy.get('@body-row').should('have.length', 3);
+    cy.get('@body-row').should('have.length', 1);
     cy.get('@body-row').find('[data-testid="table-cell-name"]').contains('Trace');
     cy.get('@body-row')
       .find('[data-testid="table-cell-email"]')
