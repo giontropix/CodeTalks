@@ -45,7 +45,7 @@ export const TableSort = () => {
     <Table.Tr data-testid="table-body-row" key={id}>
       <Table.Td data-testid="table-cell-name">{name}</Table.Td>
       <Table.Td data-testid="table-cell-email">{email}</Table.Td>
-      <Table.Td data-testid="table-cell-company">{framework}</Table.Td>
+      <Table.Td data-testid="table-cell-framework">{framework}</Table.Td>
     </Table.Tr>
   ));
 

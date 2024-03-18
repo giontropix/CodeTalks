@@ -1,6 +1,6 @@
 {
-  "header.title": "Prova su strada di ",
-  "header.thread": "TALK MAIN THREAD",
+  "header.title": "Dormire sonni tranquilli con ",
+  "header.thread": "Cypress",
 
   "field_error.required": "Attenzione, campo vuoto",
   "field_error.error": "Inserimento errato",
@@ -9,10 +9,10 @@
   "sidebar.menu_item.form": "Form a caso",
   "sidebar.menu_item.table": "Tabella proprio basica",
 
-  "dashboard.title": "TALK TITLE",
-  "dashboard.abstract": "TALK BRIEF DESCRIPTION",
+  "dashboard.title": "Un tool completo per far fare alle macchine ciò che i dev odiano fare",
+  "dashboard.abstract": "Vi immaginate che mondo sarebbe se non dovessimo più avere{br}bisogno di testare in continuazione le app quando guardiamo, disgustati, il codice scritto 6 mesi fa e viene quella irrefrenabile voglia di <strong>REFACTOR</strong>???",
   "dashboard.doc.button": "Vai alla doc",
-  "dashboard.doc.href": "MAIN THREAD DOC LINK",
+  "dashboard.doc.href": "https://docs.cypress.io/guides/overview/why-cypress",
 
   "table.headers.name": "Name",
   "table.headers.email": "Email",
