@@ -5,10 +5,13 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import { showNotification } from '@mantine/notifications';
 import classes from './ContainedInput.module.css';
 import { email, required } from '../../utils/fieldValidators';
-import { addUser } from '../../services/users';
 import { User } from '../../types';
+import { AppDispatch } from '../../store/configureStore';
+import { useDispatch } from 'react-redux';
+import { requestAddUser } from '../../store/slices/users/sideEffects';
 
 const Form = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const intl = useIntl();
   const {
     register,
@@ -17,7 +20,7 @@ const Form = () => {
   } = useForm<User>();
 
   const onSubmit = (user: User) => {
-    addUser(user).then(() => {
+    dispatch(requestAddUser(user)).then(() => {
       showNotification({
         message: intl.formatMessage({
           id: 'form.submit.success',
